@@ -3,33 +3,34 @@ class Location
   # Declare class variable to store locations and initialize it to an empty array
   @@locations = []
 
-  # Construct location
+  # Constructor to create new location
   def initialize(name, latitude, longitude)
     @name = name
     @latitude = latitude
     @longitude = longitude
   end
 
-  # Define class method to add location to locations
-  def self.add(location)
+  # Add location to in-memory storage
+  def self.add(name, latitude, longitude)
+    location = Location.new(name, latitude, longitude)
     @@locations << location
+    location
   end
 
-  # Define class to return all locations
+  # Return all locations
   def self.all
     @@locations
+  end
+
+  def self.find_by_index(index)
+    @@locations[index]
   end
 end
 
 # ## Test
 
-# # Create new locations
-# testLocal1 = Location.new("Tokyo", 35.6764, 139.6500)
-# testLocal2 = Location.new("London", 51.5072, 0.1276)
+# Location.add("Tokyo", 35.6764, 139.6500)
+# Location.add("London", 51.5072, 0.1276)
 
-# # Add locations to the list
-# Location.add(testLocal1)
-# Location.add(testLocal2)
-
-# # Print all locations
 # puts Location.all.inspect
+# puts Location.find_by_index(0).inspect
