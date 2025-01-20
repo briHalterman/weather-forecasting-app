@@ -25,6 +25,7 @@ class Location
     @@locations
   end
 
+  # Find location by index
   def self.find_by_index(index)
     @@locations[index]
   end

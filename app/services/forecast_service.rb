@@ -15,16 +15,16 @@ class ForecastService
       forecast_days: 7
     }
 
-    # API Request
-    response = self.class.get('/v1/forecast', query: query)
+    begin
+      # API Request
+      response = self.class.get('/v1/forecast', query: query)
 
-    # Handle response
-    handle_response(response)
-  end
-
-  private
-
-  def handle_response(response)
-    JSON.parse(response.body)
+      if response.success?
+        # Return forecast
+        JSON.parse(response.body)
+      else
+        { error: "Failed to fetch forecast: #{response.message}" }
+      end
+    end
   end
 end
