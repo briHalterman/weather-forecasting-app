@@ -4,6 +4,9 @@
 # 3. create new location
 
 class LocationsController < ApplicationController
+  # Protect browser requests, reset session for APIs
+  protect_from_forgery with: :null_session
+
   # List all locations
   def index
     @locations = Location.all
@@ -24,6 +27,6 @@ class LocationsController < ApplicationController
 
     location = Location.add(name, latitude, longitude)
 
-    render json: location, status: created
+    render json: location, status: :created
   end
 end
