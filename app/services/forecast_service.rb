@@ -1,7 +1,7 @@
 # httparty gem used for making HTTP requests
 require 'httparty'
 
-class WeatherService
+class ForecastService
   include HTTParty
   base_uri 'https://api.open-meteo.com'
 

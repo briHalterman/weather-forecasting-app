@@ -29,4 +29,18 @@ class LocationsController < ApplicationController
 
     render json: location, status: :created
   end
+
+  # Fetch forecast for specific location
+  def forecast
+    # Fetch Location by Id
+    location = Location.find_by_index(params[:id].to_i)
+
+    service = ForecastService.new
+
+    # Fetch forecast from API
+    forecast_data = service.fetch_forecast(location.latitude, location.longitude)
+
+    # Return forecast
+    render json: forecast_data
+  end
 end
