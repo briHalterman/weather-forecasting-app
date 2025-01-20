@@ -27,10 +27,10 @@ class Location
   end
 end
 
-# ## Test
+## Test
 
-# Location.add("Tokyo", 35.6764, 139.6500)
-# Location.add("London", 51.5072, 0.1276)
+Location.add("Tokyo", 35.6764, 139.6500)
+Location.add("London", 51.5072, 0.1276)
 
 # puts Location.all.inspect
 # puts Location.find_by_index(0).inspect
