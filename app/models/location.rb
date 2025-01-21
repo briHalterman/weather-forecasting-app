@@ -3,6 +3,9 @@ class Location
   # Declare class variable to store locations and initialize it to an empty array
   @@locations = []
 
+  # Expose attributes
+  attr_reader :name, :latitude, :longitude
+
   # Constructor to create new location
   def initialize(name, latitude, longitude)
     @name = name
@@ -22,6 +25,7 @@ class Location
     @@locations
   end
 
+  # Find location by index
   def self.find_by_index(index)
     @@locations[index]
   end
