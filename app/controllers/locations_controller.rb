@@ -10,7 +10,7 @@ class LocationsController < ApplicationController
   # List all locations
   def index
     @locations = Location.all
-    render json: @locations
+    # render json: @locations
   end
 
   # Create new location
@@ -44,5 +44,10 @@ class LocationsController < ApplicationController
       # Return forecast
       render json: forecast_data
     end
+  end
+
+  # Get form to add new location
+  def new
+    @location = Location.new("Unnamed", 0.0, 0.0)
   end
 end
