@@ -10,7 +10,7 @@ class LocationsController < ApplicationController
   # List all locations
   def index
     @locations = Location.all
-    render json: @locations
+    # render json: @locations
   end
 
   # Create new location
