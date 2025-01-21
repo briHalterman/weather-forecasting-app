@@ -14,7 +14,7 @@ class Location
   end
 
   # Add location to in-memory storage
-  def self.add(name, latitude, longitude)
+  def self.add(name = "", latitude = 0.0, longitude = 0.0)
     location = Location.new(name, latitude, longitude)
     @@locations << location
     location

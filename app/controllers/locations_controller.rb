@@ -45,4 +45,9 @@ class LocationsController < ApplicationController
       render json: forecast_data
     end
   end
+
+  # Get form to add new location
+  def new
+    @location = Location.new("Unnamed", 0.0, 0.0)
+  end
 end
