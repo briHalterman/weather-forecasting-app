@@ -1,9 +1,9 @@
 # httparty gem used for making HTTP requests
-require 'httparty'
+require "httparty"
 
 class ForecastService
   include HTTParty
-  base_uri 'https://api.open-meteo.com'
+  base_uri "https://api.open-meteo.com"
 
   # Fetch forecast
   def fetch_forecast(latitude, longitude)
@@ -17,7 +17,7 @@ class ForecastService
 
     begin
       # API Request
-      response = self.class.get('/v1/forecast', query: query)
+      response = self.class.get("/v1/forecast", query: query)
 
       if response.success?
         # Return forecast
