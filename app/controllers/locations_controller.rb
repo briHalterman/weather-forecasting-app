@@ -51,4 +51,24 @@ class LocationsController < ApplicationController
   def new
     @location = Location.new
   end
+
+  def new_from_address
+    # render form
+  end
+
+  def create_from_address
+    address = params[:address]
+    service = GeocodeService.new
+    coordinates = service.fetch_coordinates(address)
+
+    if coordinates[:error]
+      flash[:alert] = "Error: #{coordinates[:error]}"
+      redirect_to new_from_address_locations_path
+    else
+      name = params[:name]
+      Location.add(name, coordinates[:latitude], coordinates[:longitude])
+      flash[:notice] = "Location added!"
+      redirect_to locations_path
+    end
+  end
 end

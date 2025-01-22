@@ -7,5 +7,9 @@ Rails.application.routes.draw do
     member do
       get :forecast
     end
+    collection do
+      get :new_from_address
+      post :create_from_address
+    end
   end
 end
