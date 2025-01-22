@@ -1,0 +1,17 @@
+<h1>Add Location</h1>
+
+<%= form_with url: create_from_address_locations_path, method: :post, local: true do |form| %>
+  <div>
+    <%= form.label :name, "Location Name" %>
+    <%= form.text_field :name, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :address, "Address" %>
+    <%= form.text_field :address, required: true %>
+  </div>
+
+  <%= form.submit "Add Location" %>
+<% end %>
+
+<%= link_to 'Weather Monitors', locations_path %>

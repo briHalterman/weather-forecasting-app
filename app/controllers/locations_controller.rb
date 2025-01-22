@@ -23,7 +23,9 @@ class LocationsController < ApplicationController
     # Add new location to memory
     location = Location.add(name, latitude, longitude)
 
-    render json: location, status: :created
+    # render json: location, status: :created
+
+    redirect_to locations_path
   end
 
   # Display forecast for specific location
@@ -67,7 +69,6 @@ class LocationsController < ApplicationController
     else
       name = params[:name]
       Location.add(name, coordinates[:latitude], coordinates[:longitude])
-      flash[:notice] = "Location added!"
       redirect_to locations_path
     end
   end
