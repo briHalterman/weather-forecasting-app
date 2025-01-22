@@ -48,6 +48,6 @@ class LocationsController < ApplicationController
 
   # Get form to add new location
   def new
-    @location = Location.new("Unnamed", 0.0, 0.0)
+    @location = Location.new
   end
 end
