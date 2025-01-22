@@ -1,9 +1,9 @@
 # Weather Forecasting App
 
 The **Weather Forecasting App** is a minimal web application that allows users to:
-1. Save locations (cities) in memory with their name, latitude, and longitude.
+1. Save locations in memory using manually entered coordinates, or by entering an address, which is converted to coordinates using the [Geocode.xyz API](https://geocode.xyz).
 2. View a list of saved locations.
-3. Fetch 7-day weather forecast data (temperature highs and lows) for a specific location using the [Open Meteo API](https://open-meteo.com).
+3. Fetch and display 7-day weather forecast data (temperature highs and lows) for a specific location using the [Open Meteo API](https://open-meteo.com).
 
 ## Setup Instructions
 
@@ -26,7 +26,6 @@ Navigate to http://localhost:3000/locations to use the app.
 
 ## Known Issues and Limitations
 - **No Persistent Storage**: Data is saved only in memory and will reset when the server restarts.
-- **Manual Location Entry**: Users must manually enter location coordinates.
 - **Limited Error Handling**: Edge cases and many error scenarios are not yet handled.
-- **Limited Styling**: The app currently lacks any CSS and requires a view for forecast.
+- **Limited Styling**: The app currently lacks CSS styling.
 - **No Tests**: Automated tests are not yet implemented.
