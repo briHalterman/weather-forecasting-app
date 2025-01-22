@@ -29,25 +29,26 @@ class LocationsController < ApplicationController
   # Display forecast for specific location
   def forecast
     # Fetch Location by Id
-    location = Location.find_by_index(params[:id].to_i)
+    @location = Location.find_by_index(params[:id].to_i)
 
     # Initialize weather forecast service
     service = ForecastService.new
 
     # Fetch forecast from API
-    forecast_data = service.fetch_forecast(location.latitude, location.longitude)
+    @forecast_data = service.fetch_forecast(@location.latitude, @location.longitude)
 
-    if forecast_data[:error]
+    if @forecast_data[:error]
       # Catch error
-      render json: forecast_data, status: :bad_request
+      flash[:error] =  "Could not fetch forecast data. Please try again."
+      redirect_to locations_path
     else
       # Return forecast
-      render json: forecast_data
+      render :forecast
     end
   end
 
   # Get form to add new location
   def new
-    @location = Location.new("Unnamed", 0.0, 0.0)
+    @location = Location.new
   end
 end

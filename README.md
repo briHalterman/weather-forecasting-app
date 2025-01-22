@@ -3,13 +3,19 @@
 The **Weather Forecasting App** is a minimal web application that allows users to:
 1. Save locations (cities) in memory with their name, latitude, and longitude.
 2. View a list of saved locations.
-3. Fetch and display 7-day weather forecast data (temperature highs and lows) for a specific location using the [Open Meteo API](https://open-meteo.com).
+3. Fetch 7-day weather forecast data (temperature highs and lows) for a specific location using the [Open Meteo API](https://open-meteo.com).
 
 ## Setup Instructions
 
 ### Clone the repository
+```
+git clone https://github.com/briHalterman/weather-forecasting-app.git
+cd weather-forecasting-app
+```
 ### Install Dependencies
+```bundle install```
 ### Start the Rails Server
+```rails s```
 ### Visit the app in your browser
 Navigate to http://localhost:3000/locations to use the app.
 
@@ -21,6 +27,6 @@ Navigate to http://localhost:3000/locations to use the app.
 ## Known Issues and Limitations
 - **No Persistent Storage**: Data is saved only in memory and will reset when the server restarts.
 - **Manual Location Entry**: Users must manually enter location coordinates.
-- **Limited Error Handling**: Edge cases and error scenarios are not yet handled.
-- **No Styling**: The app currently lacks any CSS or design.
+- **Limited Error Handling**: Edge cases and many error scenarios are not yet handled.
+- **Limited Styling**: The app currently lacks any CSS and requires a view for forecast.
 - **No Tests**: Automated tests are not yet implemented.

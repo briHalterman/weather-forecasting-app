@@ -7,7 +7,7 @@ class Location
   attr_reader :name, :latitude, :longitude
 
   # Constructor to create new location
-  def initialize(name, latitude, longitude)
+  def initialize(name = "", latitude = 0.0, longitude = 0.0)
     @name = name
     @latitude = latitude
     @longitude = longitude
@@ -28,6 +28,15 @@ class Location
   # Find location by index
   def self.find_by_index(index)
     @@locations[index]
+  end
+
+  # Methods for `form_with` compatibility
+  def self.model_name
+    ActiveModel::Name.new(self, nil, "Location")
+  end
+
+  def persisted?
+    false
   end
 end
 
