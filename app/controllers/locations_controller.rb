@@ -23,7 +23,9 @@ class LocationsController < ApplicationController
     # Add new location to memory
     location = Location.add(name, latitude, longitude)
 
-    render json: location, status: :created
+    # render json: location, status: :created
+
+    redirect_to locations_path
   end
 
   # Display forecast for specific location
@@ -50,5 +52,24 @@ class LocationsController < ApplicationController
   # Get form to add new location
   def new
     @location = Location.new
+  end
+
+  def new_from_address
+    # render form
+  end
+
+  def create_from_address
+    address = params[:address]
+    service = GeocodeService.new
+    coordinates = service.fetch_coordinates(address)
+
+    if coordinates[:error]
+      flash[:alert] = "Error: #{coordinates[:error]}"
+      redirect_to new_from_address_locations_path
+    else
+      name = params[:name]
+      Location.add(name, coordinates[:latitude], coordinates[:longitude])
+      redirect_to locations_path
+    end
   end
 end
