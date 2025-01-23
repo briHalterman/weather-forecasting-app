@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     collection do
       get :new_from_address
       post :create_from_address
+      get :new_from_ip
+      post :create_from_ip
     end
   end
 end
