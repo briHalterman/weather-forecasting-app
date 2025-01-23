@@ -44,6 +44,13 @@ class LocationsController < ApplicationController
       flash[:error] =  "Could not fetch forecast data. Please try again."
       redirect_to locations_path
     else
+      chart_service = ChartService.new
+      @chart_url = chart_service.generate_temperature_chart(
+        @forecast_data["daily"]["time"],
+        @forecast_data["daily"]["temperature_2m_max"],
+        @forecast_data["daily"]["temperature_2m_min"]
+      )
+
       # Return forecast
       render :forecast
     end
