@@ -2,7 +2,7 @@
 <%# Features:
   1. list locations,
   2. provide link to view each location,
-  3. button to add location
+  3. links to add location
 %>
 
 <h1>World Wide Weather</h1>
@@ -27,5 +27,9 @@
   </tbody>
 </table>
 
+<br />
 <%= link_to 'Add Location from Coordinates', new_location_path %>
+<br />
 <%= link_to 'Add Location from Address', new_from_address_locations_path %>
+<br />
+<%= link_to 'Add Your Current Location', new_from_ip_locations_path%>
