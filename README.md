@@ -1,7 +1,10 @@
 # Weather Forecasting App
 
 The **Weather Forecasting App** is a minimal web application that allows users to:
-1. Save locations in memory using manually entered coordinates, or by entering an address, which is converted to coordinates using the [Geocode.xyz API](https://geocode.xyz).
+1. Save locations in memory
+- Using manually entered coordinates
+- By entering an address, which is converted to coordinates using the [Geocode.xyz API](https://geocode.xyz).
+- By IP address (detected and converted to coordinates using [ipapi](ipapi.co))
 2. View a list of saved locations.
 3. Fetch and display 7-day weather forecast data (temperature highs and lows) for a specific location using the [Open Meteo API](https://open-meteo.com).
 
