@@ -24,7 +24,7 @@ Navigate to http://localhost:3000/locations to use the app.
 
 ## Technologies Used
 - **Ruby on Rails**: Backend and Views
-- **HTTParty**: API Integration with Open Meteo
+- **HTTParty**: API Integration
 - **Postman**: Testing
 
 ## Known Issues and Limitations
@@ -32,3 +32,6 @@ Navigate to http://localhost:3000/locations to use the app.
 - **Limited Error Handling**: Edge cases and many error scenarios are not yet handled.
 - **Limited Styling**: The app currently lacks CSS styling.
 - **No Tests**: Automated tests are not yet implemented.
+- **Limited CRUD Functionality**: Users can create and read locations, but cannot yet to update or delete locations.
+- **Metric Only**: Data is displayed with metric units; A toggle to switch to US customary units would be a user friendly addition.
+- **Failing Linting Tests**
