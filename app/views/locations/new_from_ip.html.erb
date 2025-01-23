@@ -1,0 +1,12 @@
+<h1>Add Current Location</h1>
+
+<%= form_with url: create_from_ip_locations_path, method: :post, local: true do |form| %>
+  <div>
+    <%= form.label :name, "Location Name" %>
+    <%= form.text_field :name, required: true %>
+  </div>
+
+  <%= form.submit "Add Location"%>
+<% end %>
+
+<%= link_to 'Weather Monitors', locations_path %>

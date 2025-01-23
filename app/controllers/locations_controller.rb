@@ -72,4 +72,22 @@ class LocationsController < ApplicationController
       redirect_to locations_path
     end
   end
+
+  def new_from_ip
+    # render form
+  end
+
+  def create_from_ip
+    service = IpapiService.new
+    coordinates = service.fetch_coordinates
+
+    if coordinates[:error]
+      flash[:alert] = "Error: #{coordinates[:error]}"
+      redirect_to new_from_ip_locations_path
+    else
+      name = params[:name]
+      Location.add(name, coordinates[:latitude], coordinates[:longitude])
+      redirect_to locations_path
+    end
+  end
 end
