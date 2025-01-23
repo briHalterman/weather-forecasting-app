@@ -6,6 +6,10 @@
       <th>Date</th>
       <th>High Temperature (°C)</th>
       <th>Low Temperature (°C)</th>
+      <th>Precipitation (mm)</th>
+      <th>Max Wind Speed (km/hr)</th>
+      <th>Sunrise</th>
+      <th>Sunset</th>
     </tr>
   </thead>
   <tbody>
@@ -14,9 +18,18 @@
         <td><%= date %></td>
         <td><%= @forecast_data['daily']['temperature_2m_max'][index] %></td>
         <td><%= @forecast_data['daily']['temperature_2m_min'][index] %></td>
+        <td><%= @forecast_data['daily']['precipitation_sum'][index] %></td>
+        <td><%= @forecast_data['daily']['wind_speed_10m_max'][index] %></td>
+        <td><%= @forecast_data['daily']['sunrise'][index] %></td>
+        <td><%= @forecast_data['daily']['sunset'][index] %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<>
+<div>
+  <img src="<%= @chart_url %>" />
+</div>
 
 <%= link_to 'Weather Monitors', locations_path %>

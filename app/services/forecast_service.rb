@@ -11,7 +11,8 @@ class ForecastService
     query = {
       latitude: latitude,
       longitude: longitude,
-      daily: "temperature_2m_max,temperature_2m_min",
+      daily: "temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max,sunrise,sunset",
+      timezone: "auto",
       forecast_days: 7
     }
 
