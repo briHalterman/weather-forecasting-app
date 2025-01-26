@@ -13,5 +13,7 @@ class ChartService
     }
 
     "#{BASE_URL}?#{query.to_query}"
+  rescue StandardError => e
+    { error: "Error: #{e.message}" }
   end
 end

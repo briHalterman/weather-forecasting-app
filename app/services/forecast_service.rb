@@ -30,6 +30,8 @@ class ForecastService
       else
         { error: "Failed to fetch forecast: #{response.message}" }
       end
+    rescue StandardError => e
+      { error: "Error: #{e.message}" }
     end
   end
 

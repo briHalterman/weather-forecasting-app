@@ -19,6 +19,8 @@ class IpapiService
       else
         { error: "Failed to fetch coordinates" }
       end
+    rescue StandardError => e
+      { error: "Error: #{e.message}" }
     end
   end
 end
