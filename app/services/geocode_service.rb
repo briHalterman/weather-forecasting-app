@@ -5,25 +5,34 @@ class GeocodeService
   base_uri "https://geocode.xyz"
 
   def fetch_coordinates(address)
+    #  Validate input
+    if address.nil? || address.empty?
+      return { error: "Please provide a valid address, postal code or city name." }
+    end
+
     query = {
       locate: address,
       json: 1
     }
 
-    response = self.class.get("/", query: query)
+    begin
+      response = self.class.get("/", query: query)
 
-    if response.success?
-      data = JSON.parse(response.body)
-      if data["error"]
-        { error: data["error"] }
+      if response.success?
+        data = JSON.parse(response.body)
+        if data["error"]
+          { error: "API error: #{data["error"]}" }
+        else
+          {
+            latitude: data["latt"].to_f,
+            longitude: data["longt"].to_f
+          }
+        end
       else
-        {
-          latitude: data["latt"].to_f,
-          longitude: data["longt"].to_f
-        }
+        { error: "Failed to fetch coordinates" }
       end
-    else
-      { error: "Failed to fetch coordinates" }
+    rescue StandardError => e
+      { error: "Error: #{e.message}" }
     end
   end
 end

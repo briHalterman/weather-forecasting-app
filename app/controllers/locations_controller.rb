@@ -41,19 +41,27 @@ class LocationsController < ApplicationController
 
     if @forecast_data[:error]
       # Catch error
-      flash[:error] =  "Could not fetch forecast data. Please try again."
+      flash[:error] =  @forecast_data[:error]
       redirect_to locations_path
-    else
-      chart_service = ChartService.new
-      @chart_url = chart_service.generate_temperature_chart(
-        @forecast_data["daily"]["time"],
-        @forecast_data["daily"]["temperature_2m_max"],
-        @forecast_data["daily"]["temperature_2m_min"]
-      )
-
-      # Return forecast
-      render :forecast
     end
+
+    # Validate fetched data
+    daily_forecast = @forecast_data["daily"]
+    if daily_forecast["time"].nil? || daily_forecast["temperature_2m_max"].nil? || daily_forecast["temperature_2m_min"].nil?
+      flash[:error] = "Error fetching complete data from API. Please try again."
+      redirect_to locations_path
+    end
+
+    # Generate chart
+    chart_service = ChartService.new
+    @chart_url = chart_service.generate_temperature_chart(
+      daily_forecast["time"],
+      daily_forecast["temperature_2m_max"],
+      daily_forecast["temperature_2m_min"]
+    )
+
+    # Return forecast
+    render :forecast
   end
 
   # Get form to add new location

@@ -8,10 +8,12 @@ class ChartService
       chxt: "x,y",
       chxl: "0:|#{dates.join('|')}",
       chco: "FF0000,0000FF",
-      chs: "500x300",
+      chs: "700x400",
       chtt: "Daily Highs and Lows"
     }
 
     "#{BASE_URL}?#{query.to_query}"
+  rescue StandardError => e
+    { error: "Error: #{e.message}" }
   end
 end

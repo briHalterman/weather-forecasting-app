@@ -5,9 +5,15 @@ class ForecastService
   include HTTParty
   base_uri "https://api.open-meteo.com"
 
-  # Fetch forecast
   def fetch_forecast(latitude, longitude)
-    # Query params
+    # Validate input
+    if latitude.nil? || longitude.nil? ||
+      !valid_coordinate?(latitude, -90, 90) ||
+      !valid_coordinate?(longitude, -180, 180)
+
+      return { error: "Please provide valid longitude and latitude." }
+    end
+
     query = {
       latitude: latitude,
       longitude: longitude,
@@ -17,15 +23,21 @@ class ForecastService
     }
 
     begin
-      # API Request
       response = self.class.get("/v1/forecast", query: query)
 
       if response.success?
-        # Return forecast
         JSON.parse(response.body)
       else
         { error: "Failed to fetch forecast: #{response.message}" }
       end
+    rescue StandardError => e
+      { error: "Error: #{e.message}" }
     end
+  end
+
+  private
+
+  def valid_coordinate?(value, min, max)
+    value.is_a?(Numeric) && value.between?(min, max)
   end
 end
