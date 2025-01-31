@@ -34,7 +34,7 @@ Navigate to http://localhost:3000/locations to use the app.
 - **Limited Styling**: The app currently lacks CSS styling.
 - **No Tests**: Automated tests are not yet implemented.
 - **Limited CRUD Functionality**: Users can create and read locations, but cannot yet to update or delete locations.
-- **Metric Only**: Data is displayed with metric units; A toggle to switch to US customary units would be a user friendly addition.
+- **Units**: Temperature is displayed in Fahrenheit while other data is displayed with metric units; A toggle to switch between US customary units and metric units would be a user friendly addition.
 - **Failing Linting Tests**
 - **Accessible Design**
 - **Chart Limitations**: Temperature chart cannot display negative temperatures.

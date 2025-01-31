@@ -19,7 +19,8 @@ class ForecastService
       longitude: longitude,
       daily: "temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max,sunrise,sunset",
       timezone: "auto",
-      forecast_days: 7
+      forecast_days: 7,
+      temperature_unit: "fahrenheit"
     }
 
     begin
