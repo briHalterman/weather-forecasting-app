@@ -9,29 +9,41 @@ class LocationsController < ApplicationController
 
   # List all locations
   def index
-    @locations = Location.all
+    @locations = ForecastLocation.all
     # render json: @locations
   end
 
   # Create new location
+  # def create
+  #   # Extract params
+  #   name = params[:name]
+  #   latitude = params[:latitude].to_f # Convert to floating point
+  #   longitude = params[:longitude].to_f # Convert to floating point
+
+  #   # Add new location to memory
+  #   location = ForecastLocation.add(name, latitude, longitude)
+
+  #   # render json: location, status: :created
+
+  #   redirect_to locations_path
+  # end
+
   def create
-    # Extract params
-    name = params[:name]
-    latitude = params[:latitude].to_f # Convert to floating point
-    longitude = params[:longitude].to_f # Convert to floating point
+    @location = ForecastLocation.new(location_params)
 
-    # Add new location to memory
-    location = Location.add(name, latitude, longitude)
-
-    # render json: location, status: :created
-
-    redirect_to locations_path
+    if @location.save
+      redirect_to locations_path
+    else
+      flash[:alert] = "Failed to add new location. Please try again."
+    end
   end
 
   # Display forecast for specific location
   def forecast
     # Fetch Location by Id
-    @location = Location.find_by_index(params[:id].to_i)
+    Rails.logger.debug "Fetching location with ID: #{params[:id]}"
+
+    @location = ForecastLocation.find_by(id: params[:id].to_i)
 
     # Initialize weather forecast service
     service = ForecastService.new
@@ -66,15 +78,16 @@ class LocationsController < ApplicationController
 
   # Get form to add new location
   def new
-    @location = Location.new
+    @location = ForecastLocation.new
   end
 
   def new_from_address
     # render form
+    @location = ForecastLocation.new
   end
 
   def create_from_address
-    address = params[:address]
+    address = params[:forecast_location][:address]
     service = GeocodeService.new
     coordinates = service.fetch_coordinates(address)
 
@@ -82,14 +95,26 @@ class LocationsController < ApplicationController
       flash[:alert] = "Error: #{coordinates[:error]}"
       redirect_to new_from_address_locations_path
     else
-      name = params[:name]
-      Location.add(name, coordinates[:latitude], coordinates[:longitude])
-      redirect_to locations_path
+      # name = params[:name]
+      # Location.add(name, coordinates[:latitude], coordinates[:longitude])
+      @location = ForecastLocation.new(
+        name: params[:forecast_location][:name],
+        latitude: coordinates[:latitude],
+        longitude: coordinates[:longitude]
+      )
+
+      if @location.save
+        redirect_to locations_path, notice: "Location saved!"
+      else
+        flash[:alert] = "Failed to save location."
+        render :new_from_address, status: :unprocessable_entity
+      end
     end
   end
 
   def new_from_ip
     # render form
+    @location = ForecastLocation.new
   end
 
   def create_from_ip
@@ -100,9 +125,21 @@ class LocationsController < ApplicationController
       flash[:alert] = "Error: #{coordinates[:error]}"
       redirect_to new_from_ip_locations_path
     else
-      name = params[:name]
-      Location.add(name, coordinates[:latitude], coordinates[:longitude])
-      redirect_to locations_path
+      # name = params[:name]
+      # Location.add(name, coordinates[:latitude], coordinates[:longitude])
+      @location = ForecastLocation.new(name: params[:forecast_location][:name], latitude: coordinates[:latitude], longitude: coordinates[:longitude])
+
+      if @location.save
+        redirect_to locations_path
+      else
+        flash[:alert] = "Failed to save location"
+      end
     end
+  end
+
+  private
+
+  def location_params
+    params.require(:forecast_location).permit(:name, :latitude, :longitude)
   end
 end
