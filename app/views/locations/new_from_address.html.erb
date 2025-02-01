@@ -1,6 +1,6 @@
 <h1>Add Location from Address</h1>
 
-<%= form_with url: create_from_address_locations_path, method: :post, local: true do |form| %>
+<%= form_with model: @location, url: create_from_address_locations_path, method: :post, local: true do |form| %>
   <div>
     <%= form.label :name, "Location Name" %>
     <%= form.text_field :name, required: true %>
@@ -8,7 +8,7 @@
 
   <div>
     <%= form.label :address, "Address" %>
-    <%= form.text_field :address, required: true %>
+    <%= form.text_field :address, name: "forecast_location[address]", required: true %>
   </div>
 
   <%= form.submit "Add Location" %>
