@@ -40,4 +40,14 @@ RSpec.describe "Managing Locations", type: :system do
 
     expect(page).to have_content("Office")
   end
+
+  it "allows a user to view a saved location's forecast" do
+    location = ForecastLocation.create!(name: "Code the Dream", latitude: 35.9956523, longitude: -78.902181)
+
+    visit locations_path
+    click_link "View", href: forecast_location_path(location)
+
+    expect(page).to have_content("Weather Forecast for Code the Dream")
+    expect(page).to have_css("img")
+  end
 end
