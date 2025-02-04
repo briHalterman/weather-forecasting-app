@@ -25,18 +25,24 @@ cd weather-forecasting-app
 ### Visit the app in your browser
 Navigate to http://localhost:3000/locations to use the app.
 
+## Running Tests
+This project includes automated tests.
+
+To run all tests, use:
+```bundle exec rspec```
+
+
 ## Technologies Used
 - **Ruby on Rails**: Backend framework
 - **HTTParty**: API Integration
 - **ActiveRecord**: ORM for database management
-- **Postman**: Testing
+- **RSpec & Capybara**: Automated testing
+- **Postman**: Manual API testing
 
 ## Known Issues and Limitations
 - **Limited Error Handling**: Some edge cases are not yet handled.
 - **Limited Styling**: The app lacks CSS styling.
-- **No Tests**: Automated tests are not yet implemented.
-- **Limited CRUD Functionality**: Users can create and read locations but cannot yet to update or delete them.
+- **Limited CRUD Functionality**: Users can create and read locations but cannot yet update or delete them.
 - **Mixed Units**: Temperature is displayed in Fahrenheit while other data is displayed with metric units; A toggle to switch between US customary units and metric units would be a user friendly addition.
-- **Failing Linting Tests**
 - **Accessible Design**
-- **Chart Limitations**: Temperature chart cannot display negative temperatures.
+- **Chart Limitations**: Temperature chart does not properly handle negative temperatures.
