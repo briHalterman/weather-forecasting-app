@@ -13,21 +13,6 @@ class LocationsController < ApplicationController
     # render json: @locations
   end
 
-  # Create new location
-  # def create
-  #   # Extract params
-  #   name = params[:name]
-  #   latitude = params[:latitude].to_f # Convert to floating point
-  #   longitude = params[:longitude].to_f # Convert to floating point
-
-  #   # Add new location to memory
-  #   location = ForecastLocation.add(name, latitude, longitude)
-
-  #   # render json: location, status: :created
-
-  #   redirect_to locations_path
-  # end
-
   def create
     @location = ForecastLocation.new(location_params)
 

@@ -63,3 +63,5 @@ group :test do
 end
 
 gem "httparty"
+
+gem "rspec-rails", "~> 7.1"
