@@ -17,4 +17,16 @@ RSpec.describe "Managing Locations", type: :system do
 
     expect(page).to have_content("RoleModel Software")
   end
+
+  it "allows a user to add a location using an address" do
+    visit locations_path
+    click_link "Add Location from Address"
+
+    fill_in "Location Name", with: "Googleplex"
+    fill_in "forecast_location[address]", with: "1600 Amphitheatre Parkway in Mountain View, California"
+
+    click_button "Add Location"
+
+    expect(page).to have_content("Googleplex")
+  end
 end
