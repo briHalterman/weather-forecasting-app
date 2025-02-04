@@ -29,4 +29,15 @@ RSpec.describe "Managing Locations", type: :system do
 
     expect(page).to have_content("Googleplex")
   end
+
+  it "allows a user to add current location" do
+    visit locations_path
+    click_link "Add Your Current Location"
+
+    fill_in "Location Name", with: "Office"
+
+    click_button "Add Location"
+
+    expect(page).to have_content("Office")
+  end
 end
