@@ -50,4 +50,14 @@ RSpec.describe "Managing Locations", type: :system do
     expect(page).to have_content("Weather Forecast for Code the Dream")
     expect(page).to have_css("img")
   end
+
+  it "allows a user to delete a location" do
+    ForecastLocation.create!(name: "ohio state", latitude: 40.0061, longitude: 83.0283)
+
+    visit locations_path
+    expect(page).to have_content("ohio state")
+
+    click_button "Delete", match: :first
+    expect(page).not_to have_content("ohio state")
+  end
 end
