@@ -7,24 +7,32 @@
 
 <h1>World Wide Weather</h1>
 <h2>Weather Monitors</h2>
+
+<turbo-frame id="locations_list">
 <table>
   <thead>
     <tr>
       <th>Location</th>
       <th>Forecast</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <% @locations.each_with_index do |location, index| %>
-    <tr>
+    <% @locations.each do |location, index| %>
+    <tr id="location_<%= location.id %>">
       <td><%= location.name %></td>
       <td>
         <%= link_to 'View', forecast_location_path(location.id) %>
+      </td>
+      <td>
+        <%= button_to "Delete", location_path(location), method: :delete,
+          data: { turbo_frame: "locations_list" } %>
       </td>
     </tr>
     <% end %>
   </tbody>
 </table>
+</turbo-frame>
 
 <br />
 <%= link_to 'Add Location from Coordinates', new_location_path %>

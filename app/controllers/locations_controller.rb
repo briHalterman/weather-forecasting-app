@@ -122,6 +122,16 @@ class LocationsController < ApplicationController
     end
   end
 
+  def destroy
+    @location = ForecastLocation.find(params[:id])
+    @location.destroy
+
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("location_#{params[:id]}") }
+      format.html { redirect_to locations_path, notice: "Location deleted!" }
+    end
+  end
+
   private
 
   def location_params

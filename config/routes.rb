@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Define RESTful routes for locations
-  resources :locations, only: [ :index, :create, :new ] do
+  resources :locations, only: [ :index, :create, :new, :destroy ] do
     member do
       get :forecast
     end
